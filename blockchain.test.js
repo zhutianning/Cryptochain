@@ -3,15 +3,13 @@ const Block = require('./block');
 const cryptoHash = require('./crypto-hash');
 
 describe('Blockchain', () => {
-    let blockchain, newChain, originalChain, errorMock;;
+    let blockchain, newChain, originalChain;
 
     beforeEach(() => {
         blockchain = new Blockchain();
         newChain = new Blockchain();
-        errorMock = jest.fn();
 
         originalChain = blockchain.chain;
-        global.console.error = errorMock;
     });
 
     it('contains a `chain` Array instance', () => {
@@ -92,11 +90,13 @@ describe('Blockchain', () => {
     });
 
     describe('replaceChain()', () => {
-        let logMock;
+        let errorMock, logMock;
 
         beforeEach(() => {
+            errorMock = jest.fn();
             logMock = jest.fn();
 
+            global.console.error = errorMock;
             global.console.log = logMock;
         });
 
