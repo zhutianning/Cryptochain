@@ -11,4 +11,7 @@ const GENESIS_DATA = {
     data: []
 };
 
-module.exports = { GENESIS_DATA, MINE_RATE };
+// Give everybody some balance to start this ecosystem
+const STARTING_BALANCE = 1000;
+
+module.exports = { GENESIS_DATA, MINE_RATE, STARTING_BALANCE };
