@@ -22,6 +22,26 @@ class Wallet {
 
         return new Transaction({ senderWallet: this, recipient, amount });
     }
+
+    static calculateBalance({ chain, address }) {
+        let outputsTotal = 0; //Overall outputs total
+
+        for (let i = 1; i < chain.length; i++) { //Skip the genesis block, i=1, no data in genesis block
+            const block = chain[i];
+
+            for (let transaction of block.data) {
+                const addressOutput = transaction.outputMap[address];
+
+                if (addressOutput) {
+                    outputsTotal = outputsTotal + addressOutput;
+                }
+            }
+        }
+
+        return STARTING_BALANCE + outputsTotal;
+        // the STARTING_BALANCE will remain the actual value(if there are no outpus for the wallet)
+        // Otherwise we will adding all those outputs to the starting bounds
+    }
 };
 
 module.exports = Wallet;
