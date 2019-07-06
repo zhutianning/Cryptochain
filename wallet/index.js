@@ -31,21 +31,30 @@ class Wallet {
     }
 
     static calculateBalance({ chain, address }) {
+        let hasConductedTransaction = false;
         let outputsTotal = 0; //Overall outputs total
 
-        for (let i = 1; i < chain.length; i++) { //Skip the genesis block, i=1, no data in genesis block
+        for (let i = chain.length - 1; i > 0; i--) { //Iterate through the blockchain in reverse
             const block = chain[i];
 
             for (let transaction of block.data) {
+                if (transaction.input.address === address) {
+                    hasConductedTransaction = true;
+                }
+
                 const addressOutput = transaction.outputMap[address];
 
                 if (addressOutput) {
                     outputsTotal = outputsTotal + addressOutput;
                 }
             }
+
+            if (hasConductedTransaction) {
+                break;
+            }
         }
 
-        return STARTING_BALANCE + outputsTotal;
+        return hasConductedTransaction ? outputsTotal : STARTING_BALANCE + outputsTotal;
         // the STARTING_BALANCE will remain the actual value(if there are no outpus for the wallet)
         // Otherwise we will adding all those outputs to the starting bounds
     }
