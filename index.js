@@ -74,11 +74,11 @@ app.get('/api/mine-transactions', (req, res) => {
 
 //Wallet information request
 app.get('/api/wallet-info', (req, res) => {
-    const address = wallet.publicKey;
+    const address = wallet.publicKey; //local wallet public key
 
     res.json({
         address,
-        balance: Wallet.calculateBalance({ chain: blockchain.chain, address })
+        balance: Wallet.calculateBalance({ chain: blockchain.chain, address }) //local blockchain.chain
     });
 });
 
