@@ -43,6 +43,9 @@ Improved the hash function to recognize objects with new properties as changes i
 
 Covered edges cases with transaction updates to prevent vulnerabilities.
 
+## Frontend Blockchain
+
+React.js web application framework
 
 ## Ideas to try
 

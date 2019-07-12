@@ -163,8 +163,8 @@ describe('Blockchain', () => {
 
                 blockchain.validTransactionData = validTransactionDataMock;
 
-                newChain.addBlock({ data: 'foo' });
-                blockchain.replaceChain(newChain.chain, true);
+                newChain.addBlock({ data: 'foo' }); // We want the incoming chain to be longer
+                blockchain.replaceChain(newChain.chain, true); // Pass the flag of true to validate the transactions
 
                 expect(validTransactionDataMock).toHaveBeenCalled();
             });

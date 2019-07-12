@@ -1,13 +1,14 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const request = require('request');
+const path = require('path');
 const Blockchain = require('./blockchain');
 const PubSub = require('./app/pubsub');
 const TransactionPool = require('./wallet/transaction-pool');
 const Wallet = require('./wallet');
 const TransactionMiner = require('./app/transaction-miner');
 
-const app = express();
+const app = express(); //Configured to accept each HTTP request,and serve JSON as the response.
 const blockchain = new Blockchain();
 const transactionPool = new TransactionPool();
 const wallet = new Wallet(); // you can use wallet.createTransaction  method to create transaction anytime you want.
@@ -80,6 +81,10 @@ app.get('/api/wallet-info', (req, res) => {
         address,
         balance: Wallet.calculateBalance({ chain: blockchain.chain, address }) //local blockchain.chain
     });
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './client/index.html'));
 });
 
 const syncWithRootState = () => {

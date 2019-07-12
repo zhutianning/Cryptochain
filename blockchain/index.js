@@ -18,7 +18,7 @@ class Blockchain {
         this.chain.push(newBlock);
     }
 
-    replaceChain(chain, validateTransactions, onSuccess) {
+    replaceChain(chain, validateTransactions, onSuccess) { // onSuccess and Callback is usually the last parameter to a method
         if (chain.length <= this.chain.length) {
             console.error('The incoming chain must be longer');
             return; // We want the incoming chain to be longer
@@ -29,6 +29,7 @@ class Blockchain {
             return; // we want the incoming chain to be valid
         }
 
+        //If the validateTransaction flag is actually true, and if it FALSE,it won't bother any other part
         if (validateTransactions && !this.validTransactionData({ chain })) {
             console.error('The incoming chain has invalid data');
             return;
