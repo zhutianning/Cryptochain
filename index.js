@@ -20,7 +20,7 @@ const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
 
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'client'))); //middlewale, and this allow us to serve a static file from directory, also we need the absolute path.join
+app.use(express.static(path.join(__dirname, 'client/dist'))); //middlewale, and this allow us to serve a static file from directory, also we need the absolute path.join
 //the first parameter is current directory , then provide the overall absolute path to the local client directory
 
 app.get('/api/blocks', (req, res) => {
@@ -86,7 +86,7 @@ app.get('/api/wallet-info', (req, res) => {
 });
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client/index.html'));
+    res.sendFile(path.join(__dirname, 'client/dist/index.html'));
 });
 
 const syncWithRootState = () => {
