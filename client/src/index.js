@@ -4,6 +4,6 @@ import { render } from 'react-dom'; // this function is the key to insert react 
 
 
 render( 
-    <div> Cryptochain in React! </div>,
+    <div> Cryptochain in React!: third update </div>,
     document.getElementById('root')
 );
