@@ -1,0 +1,33 @@
+body {
+    background-color: #fff;
+    color: #444;
+    text-align: center;
+    font-size: 25px;
+    /* font-family: 'Butcherman', cursive; */
+    font-family: 'Bangers', cursive;
+    padding-top: 5%;  /* nothing touch the top of the screen */
+    word-wrap: break-word;
+}
+
+.logo {
+    width: 465px;
+    height: 262px;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.WalletInfo {
+    width: 680px;
+}
+
+.Block {
+    border: 4px solid #444;
+    padding: 5%;
+    margin: 2%;
+}
+
+/*# sourceMappingURL=/src.e31bb0bc.css.map */
