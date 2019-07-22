@@ -35,4 +35,9 @@ body {
     padding: 3%;
 }
 
+a, a:hover {
+    color: gold;
+    text-decoration: underline;
+}
+
 /*# sourceMappingURL=/src.e31bb0bc.css.map */

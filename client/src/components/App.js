@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Blocks from './Blocks';
-import logo from '../assets/logo.jpg'
+import { Link } from 'react-router-dom';
+import logo from '../assets/logo.jpg';
 
 class App extends Component {
     state = { walletInfo: {} };
@@ -22,12 +22,12 @@ class App extends Component {
                     Welcome to the blockchain ...
                 </div>
                 <br />
+                <div><Link to='/blocks'>Blocks</Link></div>  {/* It will generate <a> tag, which used in index.css   */}
+                <br />  
                 <div className='WalletInfo'>
                     <div>Address: {address}</div>
                     <div>Balance: {balance}</div>
                 </div>
-                <br />
-                <Blocks />
             </div>
         );
         
