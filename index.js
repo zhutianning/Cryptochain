@@ -8,16 +8,20 @@ const TransactionPool = require('./wallet/transaction-pool');
 const Wallet = require('./wallet');
 const TransactionMiner = require('./app/transaction-miner');
 
+const isDevelopment = process.env.ENV === 'development';
+
+const REDIS_URL = isDevelopment ?
+    'redis://127.0.0.1:6379' :
+    'redis://h:pa341ecdd10cbcb69982e2473b7712f5f13f262714dcb6920c055f3bbee9e9f72@ec2-3-221-250-213.compute-1.amazonaws.com:24499'
+    const DEFAULT_PORT = 3000;
+    const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
+
 const app = express(); //Configured to accept each HTTP request,and serve JSON as the response.
 const blockchain = new Blockchain();
 const transactionPool = new TransactionPool();
 const wallet = new Wallet(); // you can use wallet.createTransaction  method to create transaction anytime you want.
-const pubsub = new PubSub({ blockchain, transactionPool });
+const pubsub = new PubSub({ blockchain, transactionPool, redisUrl: REDIS_URL });
 const transactionMiner = new TransactionMiner({ blockchain, transactionPool, wallet, pubsub });
-
-const DEFAULT_PORT = 3000;
-const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
-
 
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'client/dist'))); //middlewale, and this allow us to serve a static file from directory, also we need the absolute path.join
@@ -109,6 +113,7 @@ const syncWithRootState = () => {
     });
 };
 
+if (isDevelopment) { 
 const walletFoo = new Wallet();
 const walletBar = new Wallet();
 
@@ -146,6 +151,7 @@ for (let i=0; i<10; i++) {
 
     transactionMiner.mineTransactions();
 }
+}
 
 let PEER_PORT;
 
@@ -153,7 +159,7 @@ if (process.env.GENERATE_PEER_PORT === 'true') {
     PEER_PORT = DEFAULT_PORT + Math.ceil(Math.random() * 1000);
 }
 
-const PORT = PEER_PORT || DEFAULT_PORT;
+const PORT = process.env.PORT || PEER_PORT || DEFAULT_PORT;
 
 app.listen(PORT, () => {
     console.log(`listening at localhost:${PORT}`);
