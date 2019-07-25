@@ -28879,12 +28879,22 @@ function (_Component) {
       }, _react.default.createElement("img", {
         className: "logo",
         src: _logo.default
-      }), _react.default.createElement("br", null), _react.default.createElement("div", null, "Welcome to the blockchain ..."), _react.default.createElement("br", null), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-        to: "/blocks"
-      }, "Blocks")), "  ", _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-        to: "/conduct-transaction"
-      }, "Conduct a Transaction")), _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-        to: "/transaction-pool"
+      }), _react.default.createElement("br", null), _react.default.createElement("div", {
+        className: "title"
+      }, _react.default.createElement("h1", null, "Welcome to the Cryptochain ...")), _react.default.createElement("br", null), _react.default.createElement("div", {
+        className: "ButtonInfo"
+      }, _react.default.createElement(_reactRouterDom.Link, {
+        to: "/blocks",
+        "class": "btn btn-primary",
+        role: "button"
+      }, "Blocks"), _react.default.createElement(_reactRouterDom.Link, {
+        to: "/conduct-transaction",
+        "class": "btn btn-primary",
+        role: "button"
+      }, "Conduct a Transaction"), _react.default.createElement(_reactRouterDom.Link, {
+        to: "/transaction-pool",
+        "class": "btn btn-primary",
+        role: "button"
       }, "Transaction Pool")), _react.default.createElement("br", null), _react.default.createElement("div", {
         className: "WalletInfo"
       }, _react.default.createElement("div", null, "Address: ", address), _react.default.createElement("div", null, "Balance: ", balance)));
@@ -47025,7 +47035,9 @@ function (_Component) {
     value: function render() {
       console.log('this.state', this.state);
       return _react.default.createElement("div", null, _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-        to: "/"
+        to: "/",
+        "class": "btn btn-primary",
+        role: "button"
       }, "Home")), _react.default.createElement("h3", null, "Blocks"), this.state.blocks.map(function (block) {
         return _react.default.createElement(_Block.default, {
           key: block.hash,
@@ -47136,7 +47148,9 @@ function (_Component) {
       return _react.default.createElement("div", {
         className: "ConductTransaction"
       }, _react.default.createElement(_reactRouterDom.Link, {
-        to: "/"
+        to: "/",
+        "class": "btn btn-primary",
+        role: "button"
       }, "Home"), _react.default.createElement("h3", null, "Conduct a Transaction"), _react.default.createElement(_reactBootstrap.FormGroup, null, _react.default.createElement(_reactBootstrap.FormControl, {
         input: "text",
         placeholder: "recipient",
@@ -47263,7 +47277,9 @@ function (_Component) {
       return _react.default.createElement("div", {
         className: "TransactionPool"
       }, _react.default.createElement("div", null, _react.default.createElement(_reactRouterDom.Link, {
-        to: "/"
+        to: "/",
+        "class": "btn btn-primary",
+        role: "button"
       }, "Home")), _react.default.createElement("h3", null, "Transaction Pool"), Object.values(this.state.transactionPoolMap).map(function (transaction) {
         return _react.default.createElement("div", {
           key: transaction.id
@@ -47423,7 +47439,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64340" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55959" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

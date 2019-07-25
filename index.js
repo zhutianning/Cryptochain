@@ -11,7 +11,8 @@ const TransactionMiner = require('./app/transaction-miner');
 const isDevelopment = process.env.ENV === 'development';
 
 const REDIS_URL = isDevelopment ?
-    'redis://127.0.0.1:6379' :
+    // the port of local redis server and remote redis server
+    'redis://127.0.0.1:6379' : 
     'redis://h:pa341ecdd10cbcb69982e2473b7712f5f13f262714dcb6920c055f3bbee9e9f72@ec2-3-221-250-213.compute-1.amazonaws.com:24499'
     const DEFAULT_PORT = 3000;
     const ROOT_NODE_ADDRESS = `http://localhost:${DEFAULT_PORT}`;
@@ -114,43 +115,43 @@ const syncWithRootState = () => {
 };
 
 if (isDevelopment) { 
-const walletFoo = new Wallet();
-const walletBar = new Wallet();
+    const walletFoo = new Wallet();
+    const walletBar = new Wallet();
 
-const generateWalletTransaction = ({ wallet, recipient, amount }) => {
-    const transaction = wallet.createTransaction({
-        recipient, amount, chain:blockchain.chain
+    const generateWalletTransaction = ({ wallet, recipient, amount }) => {
+        const transaction = wallet.createTransaction({
+            recipient, amount, chain:blockchain.chain
+        });
+
+        transactionPool.setTransaction(transaction);
+    };
+
+    const walletAction = () => generateWalletTransaction({
+        wallet, recipient: walletFoo.publicKey, amount: 5
     });
 
-    transactionPool.setTransaction(transaction);
-};
+    const walletFooAction = () => generateWalletTransaction({
+        wallet: walletFoo, recipient: walletBar.publicKey, amount: 10
+    });
 
-const walletAction = () => generateWalletTransaction({
-    wallet, recipient: walletFoo.publicKey, amount: 5
-});
+    const walletBarAction = () => generateWalletTransaction({
+        wallet: walletBar, recipient: wallet.publicKey, amount: 15
+    });
 
-const walletFooAction = () => generateWalletTransaction({
-    wallet: walletFoo, recipient: walletBar.publicKey, amount: 10
-});
+    for (let i=0; i<10; i++) {
+        if (i%3 === 0) {
+            walletAction();
+            walletFooAction();
+        } else if (i%3 === 1) {
+            walletAction();
+            walletBarAction();
+        } else {
+            walletFooAction();
+            walletBarAction();
+        }
 
-const walletBarAction = () => generateWalletTransaction({
-    wallet: walletBar, recipient: wallet.publicKey, amount: 15
-});
-
-for (let i=0; i<10; i++) {
-    if (i%3 === 0) {
-        walletAction();
-        walletFooAction();
-    } else if (i%3 === 1) {
-        walletAction();
-        walletBarAction();
-    } else {
-        walletFooAction();
-        walletBarAction();
+        transactionMiner.mineTransactions();
     }
-
-    transactionMiner.mineTransactions();
-}
 }
 
 let PEER_PORT;
@@ -160,6 +161,7 @@ if (process.env.GENERATE_PEER_PORT === 'true') {
 }
 
 const PORT = process.env.PORT || PEER_PORT || DEFAULT_PORT;
+//To make sure HEROKU can control overall port
 
 app.listen(PORT, () => {
     console.log(`listening at localhost:${PORT}`);

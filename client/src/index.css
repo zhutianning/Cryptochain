@@ -4,7 +4,7 @@ body {
     text-align: center;
     font-size: 25px;
     /* font-family: 'Butcherman', cursive; */
-    font-family: 'Bangers', cursive;
+    font-family: 'Ubuntu', sans-serif;
     padding-top: 5%;  /* nothing touch the top of the screen */
     word-wrap: break-word;
 }
@@ -18,6 +18,13 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.ButtonInfo{
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    padding: 20px;
 }
 
 .WalletInfo {
@@ -44,4 +51,10 @@ body {
 a, a:hover {
     color: gold;
     text-decoration: underline;
+}
+
+.title {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-
 }

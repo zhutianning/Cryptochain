@@ -18,13 +18,15 @@ class App extends Component {
             <div className='App'>
                 <img className='logo' src={logo}></img>
                 <br />
-                <div>
-                    Welcome to the blockchain ...
+                <div className='title'>
+                    <h1>Welcome to the Cryptochain ...</h1>
                 </div>
                 <br />
-                <div><Link to='/blocks'>Blocks</Link></div>  {/* It will generate <a> tag, which used in index.css   */}
-                <div><Link to='/conduct-transaction'>Conduct a Transaction</Link></div>
-                <div><Link to='/transaction-pool'>Transaction Pool</Link></div>
+                <div className='ButtonInfo'>
+                <Link to='/blocks' class="btn btn-primary" role="button" >Blocks</Link>{/* It will generate <a> tag, which used in index.css   */}
+                <Link to='/conduct-transaction' class="btn btn-primary" role="button">Conduct a Transaction</Link>
+                <Link to='/transaction-pool' class="btn btn-primary" role="button">Transaction Pool</Link>
+                </div>
                 <br />  
                 <div className='WalletInfo'>
                     <div>Address: {address}</div>
