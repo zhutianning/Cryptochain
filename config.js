@@ -1,4 +1,4 @@
-const MINE_RATE = 1000;
+const MINE_RATE = 1000; //Global Mine Rate Value, 1000 millisecond = 1 second; MINE_SPEED
 const INITIAL_DIFFICULTY = 3;
 
 // The Genesis Block
@@ -24,4 +24,4 @@ module.exports = {
     STARTING_BALANCE,
     REWARD_INPUT,
     MINING_REWARD
-};
+};    // share these value with other files

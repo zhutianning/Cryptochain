@@ -83,17 +83,17 @@ describe('Block', () => {
     });
 
     describe('adjustDifficulty()', () => {
-        it('raises the difficulty for a quickly mined block', () => {
+        it('Increase the difficulty for a fast mining block', () => {
             expect(Block.adjustDifficulty({
                 originalBlock: block,
-                timestamp: block.timestamp + MINE_RATE - 100
+                timestamp: block.timestamp + MINE_RATE - 150
             })).toEqual(block.difficulty + 1);
         });
 
-        it('lowers the difficulty for a slowly mined block', () => {
+        it('Decrease the difficulty for a slowly mined block', () => {
             expect(Block.adjustDifficulty({
                 originalBlock: block,
-                timestamp: block.timestamp + MINE_RATE + 100
+                timestamp: block.timestamp + MINE_RATE + 150
             })).toEqual(block.difficulty - 1);
         });
 
