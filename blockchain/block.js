@@ -1,11 +1,11 @@
 const hexToBinary = require('hex-to-binary');
 const { GENESIS_DATA, MINE_RATE } = require('../config');
-const { cryptoHash } = require('../util');
+const { cryptoHash } = require('../CryptoUtility');
 
 class Block {
-    constructor({ timestamp, lastHash, hash, data, nonce, difficulty }) {
+    constructor({ timestamp, previousHash, hash, data, nonce, difficulty }) {
         this.timestamp = timestamp;
-        this.lastHash = lastHash;
+        this.previousHash = previousHash;
         this.hash = hash;
         this.data = data;
         this.nonce = nonce;
@@ -17,7 +17,7 @@ class Block {
     }
 
     static mineBlock({ lastBlock, data }) {
-        const lastHash = lastBlock.hash;
+        const previousHash = lastBlock.hash;
         let hash, timestamp;
         let { difficulty } = lastBlock;
         let nonce = 0;
@@ -26,12 +26,12 @@ class Block {
             nonce++;
             timestamp = Date.now();
             difficulty = Block.adjustDifficulty({ originalBlock: lastBlock, timestamp });
-            hash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
+            hash = cryptoHash(timestamp, previousHash, data, nonce, difficulty);
         } while (hexToBinary(hash).substring(0, difficulty) !== '0'.repeat(difficulty));
 
         return new this({
             timestamp,
-            lastHash,
+            previousHash,
             data,
             difficulty,
             nonce,
@@ -51,3 +51,4 @@ class Block {
 }
 
 module.exports = Block;
+// Adapted from: https://github.com/15Dkatz/cryptochain

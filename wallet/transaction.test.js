@@ -1,7 +1,7 @@
 const Transaction = require('./transaction');
 const Wallet = require('./index');
-const { verifySignature } = require('../util');
-const { REWARD_INPUT, MINING_REWARD } = require('../config');
+const { verifySignature } = require('../CryptoUtility');
+const { REWARD_INPUT, Mining_return } = require('../config');
 
 describe('Transaction', () => {
     let transaction, senderWallet, recipient, amount;
@@ -181,8 +181,10 @@ describe('Transaction', () => {
             expect(rewardTransaction.input).toEqual(REWARD_INPUT);
         });
 
-        it('creates one transaction fot the miner with the `MINING_REWARD`', () => {
-            expect(rewardTransaction.outputMap[minerWallet.publicKey]).toEqual(MINING_REWARD);
+        it('creates one transaction fot the miner with the `Mining_return`', () => {
+            expect(rewardTransaction.outputMap[minerWallet.publicKey]).toEqual(Mining_return);
         });
     });
 });
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

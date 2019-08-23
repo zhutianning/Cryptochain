@@ -1,6 +1,6 @@
 const Wallet = require('./index');
 const Transaction = require('./transaction');
-const { verifySignature } = require('../util');
+const { verifySignature } = require('../CryptoUtility');
 const Blockchain = require('../blockchain');
 const { STARTING_BALANCE } = require('../config');
 
@@ -204,3 +204,5 @@ describe('Wallet', () => {
         });
     });
 });
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

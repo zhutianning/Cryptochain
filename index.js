@@ -203,3 +203,5 @@ app.listen(PORT, () => {
         syncWithRootState();
     }
 });
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

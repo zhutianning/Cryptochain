@@ -29,3 +29,4 @@ class TransactionMiner {
 }
 
 module.exports = TransactionMiner;
+// Adapted from: https://github.com/15Dkatz/cryptochain

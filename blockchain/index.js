@@ -1,8 +1,8 @@
 const Block = require('./block');
 const Transaction = require('../wallet/transaction');
 const Wallet = require('../wallet');
-const { cryptoHash } = require('../util');
-const { REWARD_INPUT, MINING_REWARD } = require('../config');
+const { cryptoHash } = require('../CryptoUtility');
+const { REWARD_INPUT, Mining_return } = require('../config');
 
 class Blockchain {
     constructor() {
@@ -57,7 +57,7 @@ class Blockchain {
                         return false;
                     }
 
-                    if (Object.values(transaction.outputMap)[0] !== MINING_REWARD) {
+                    if (Object.values(transaction.outputMap)[0] !== Mining_return) {
                         console.error('Miner reward amount is invalid');
                         return false;
                     }
@@ -96,13 +96,13 @@ class Blockchain {
         };
 
         for (let i = 1; i < chain.length; i++) {
-            const { timestamp, lastHash, hash, nonce, difficulty, data } = chain[i];
-            const actualLastHash = chain[i - 1].hash;
+            const { timestamp, previousHash, hash, nonce, difficulty, data } = chain[i];
+            const actualpreviousHash = chain[i - 1].hash;
             const lastDifficulty = chain[i - 1].difficulty;
 
-            if (lastHash !== actualLastHash) return false;
+            if (previousHash !== actualpreviousHash) return false;
 
-            const validatedHash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
+            const validatedHash = cryptoHash(timestamp, previousHash, data, nonce, difficulty);
 
             if (hash !== validatedHash) return false;
 
@@ -114,3 +114,5 @@ class Blockchain {
 }
 
 module.exports = Blockchain;
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

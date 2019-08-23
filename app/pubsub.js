@@ -75,3 +75,5 @@ class PubSub {
 }
 
 module.exports = PubSub;
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

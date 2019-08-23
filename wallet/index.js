@@ -1,6 +1,6 @@
 const Transaction = require('./transaction');
 const { STARTING_BALANCE } = require('../config');
-const { ec, cryptoHash } = require('../util');
+const { ec, cryptoHash } = require('../CryptoUtility');
 
 class Wallet {
     constructor() {
@@ -61,3 +61,5 @@ class Wallet {
 };
 
 module.exports = Wallet;
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

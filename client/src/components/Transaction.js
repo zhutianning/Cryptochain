@@ -20,3 +20,5 @@ const Transaction = ({ transaction }) => {
 }
 
 export default Transaction;
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

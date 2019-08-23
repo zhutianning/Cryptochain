@@ -2,20 +2,20 @@
 const hexToBinary = require('hex-to-binary');
 const Block = require('./block');
 const { GENESIS_DATA, MINE_RATE } = require('../config');
-const { cryptoHash } = require('../util');
+const { cryptoHash } = require('../CryptoUtility');
 
 describe('Block', () => {
     const timestamp = 2000;
-    const lastHash = 'foo-hash';
-    const hash = 'bar-hash';
+    const previousHash = 'some-hash';
+    const hash = 'guess-hash';
     const data = ['blockchain', 'data'];
     const nonce = 1;
-    const difficulty = 1;
-    const block = new Block({ timestamp, lastHash, hash, data, nonce, difficulty });
+    const difficulty = 2;
+    const block = new Block({ timestamp, previousHash, hash, data, nonce, difficulty });
 
-    it('has a timestamp, lastHash, hash, and data property', () => {
+    it('has a timestamp, previousHash, hash, data, nonce and difficulty field', () => {
         expect(block.timestamp).toEqual(timestamp);
-        expect(block.lastHash).toEqual(lastHash);
+        expect(block.previousHash).toEqual(previousHash);
         expect(block.hash).toEqual(hash);
         expect(block.data).toEqual(data);
         expect(block.nonce).toEqual(nonce);
@@ -45,8 +45,8 @@ describe('Block', () => {
             expect(minedBlock instanceof Block).toBe(true);
         });
 
-        it('sets the `lastHash` to be the `hash` of the lastBlock', () => {
-            expect(minedBlock.lastHash).toEqual(lastBlock.hash);
+        it('sets the `previousHash` to be the `hash` of the lastBlock', () => {
+            expect(minedBlock.previousHash).toEqual(lastBlock.hash);
         });
 
         it('sets the `data`', () => {
@@ -104,3 +104,5 @@ describe('Block', () => {
         });
     });
 });
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

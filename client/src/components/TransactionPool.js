@@ -19,7 +19,7 @@ class TransactionPool extends Component {
         fetch(`${document.location.origin}/api/mine-transaction`)
             .then(response => {
                 if (response.status === 200) {
-                    alert('success');
+                    alert('Mined Success');
                     history.push('/blocks');
                 } else {
                     alert('The mine-transactions block request did not complete.');
@@ -69,3 +69,5 @@ class TransactionPool extends Component {
 }
 
 export default TransactionPool;
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

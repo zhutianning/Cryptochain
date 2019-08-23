@@ -1,27 +1,29 @@
-const MINE_RATE = 1000; //Global Mine Rate Value, 1000 millisecond = 1 second; MINE_SPEED
-const INITIAL_DIFFICULTY = 3;
+const MINE_RATE = 2000; //Global Mine Rate Value, 1000 millisecond = 1 second; MINE_SPEED
+const INITIAL_DIFFICULTY = 4;
+// Give everybody some balance to start this ecosystem
+const STARTING_BALANCE = 250;
+
+const REWARD_INPUT = { address: '*authorized-reward*' };
+
+//Reward for the miners
+const Mining_return = 38;
 
 // The Genesis Block
 const GENESIS_DATA = {
     timestamp: 1,
-    lastHash: '------',
-    hash: 'hash-one',
+    previousHash: '------',
+    hash: 'initial-hash',
     difficulty: INITIAL_DIFFICULTY,
     nonce: 0,
     data: []
 };
-
-// Give everybody some balance to start this ecosystem
-const STARTING_BALANCE = 1000;
-
-const REWARD_INPUT = { address: '*authorized-reward*' };
-
-const MINING_REWARD = 50;
 
 module.exports = {
     GENESIS_DATA,
     MINE_RATE,
     STARTING_BALANCE,
     REWARD_INPUT,
-    MINING_REWARD
+    Mining_return
 };    // share these value with other files
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

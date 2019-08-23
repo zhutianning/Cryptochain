@@ -43,3 +43,5 @@ class TransactionPool {
 }
 
 module.exports = TransactionPool;
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

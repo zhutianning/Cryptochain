@@ -1,6 +1,6 @@
 const uuid = require('uuid/v1');
-const { verifySignature } = require('../util');
-const { REWARD_INPUT, MINING_REWARD } = require('../config');
+const { verifySignature } = require('../CryptoUtility');
+const { REWARD_INPUT, Mining_return } = require('../config');
 
 class Transaction {
     constructor({ senderWallet, recipient, amount, outputMap, input }) {
@@ -67,10 +67,12 @@ class Transaction {
         return new this({
             input: REWARD_INPUT,
             outputMap: {
-                [minerWallet.publicKey]: MINING_REWARD
+                [minerWallet.publicKey]: Mining_return
             }
         });
     }
 }
 
 module.exports = Transaction;
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

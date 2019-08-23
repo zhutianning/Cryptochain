@@ -24,3 +24,5 @@ for (let i = 0; i < 10000; i++) {
 
     console.log(`Time to mine block: ${timeDiff}ms. Difficulty: ${nextBlock.difficulty}. Average time: ${average}ms`);
 }
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

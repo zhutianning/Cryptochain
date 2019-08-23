@@ -113,3 +113,5 @@ describe('TransactionPool', () => {
         });
     });
 });
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

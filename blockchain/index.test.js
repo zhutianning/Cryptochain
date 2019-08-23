@@ -1,6 +1,6 @@
 const Blockchain = require('./index');
 const Block = require('./block');
-const { cryptoHash } = require('../util');
+const { cryptoHash } = require('../CryptoUtility');
 const Wallet = require('../wallet');
 const Transaction = require('../wallet/transaction');
 
@@ -47,9 +47,9 @@ describe('Blockchain', () => {
                 blockchain.addBlock({ data: 'Battlestar Galactica' });
             });
 
-            describe('and a lastHash reference has changed', () => {
+            describe('and a previousHash reference has changed', () => {
                 it('returns false', () => {
-                    blockchain.chain[2].lastHash = 'broken-lastHash';
+                    blockchain.chain[2].previousHash = 'broken-previousHash';
                     expect(Blockchain.isValidChain(blockchain.chain)).toBe(false);
                 });
             });
@@ -64,15 +64,15 @@ describe('Blockchain', () => {
             describe('and the chain contains a block with a jumped difficulty', () => {
                 it('returns false', () => {
                     const lastBlock = blockchain.chain[blockchain.chain.length - 1];
-                    const lastHash = lastBlock.hash;
+                    const previousHash = lastBlock.hash;
                     const timestamp = Date.now();
                     const nonce = 0;
                     const data = [];
                     const difficulty = lastBlock.difficulty - 3;
-                    const hash = cryptoHash(timestamp, lastHash, difficulty, nonce, data);
+                    const hash = cryptoHash(timestamp, previousHash, difficulty, nonce, data);
                     const badBlock = new Block({
                         timestamp,
-                        lastHash,
+                        previousHash,
                         hash,
                         nonce,
                         difficulty,
@@ -260,3 +260,5 @@ describe('Blockchain', () => {
     });
 
 });
+
+// Adapted from: https://github.com/15Dkatz/cryptochain

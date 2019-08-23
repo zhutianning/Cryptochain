@@ -75,3 +75,5 @@ class Block extends Component {
 };
 
 export default Block;
+
+// Adapted from: https://github.com/15Dkatz/cryptochain
