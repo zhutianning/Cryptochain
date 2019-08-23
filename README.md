@@ -108,28 +108,28 @@ heroku logs --tail
 ```
 
 ## 3rd party libraries and its version this project used
-```
-*babel-core 6.26.3
--babel-plugin-transform-class-properties 6.24.1
--babel-plugin-transform-object-rest-spread 6.26.0
--babel-preset-env 1.7.0
--babel-preset-react 6.24.1
--body-parser 1.18.3
--elliptic 6.4.1
--express 4.16.3
--hex-to-binary 1.0.1
--history 4.7.2
--parcel-bundler 1.10.3
--pubnub 4.21.6
--react 16.9.0
--react-bootstrap 0.32.4
--react-copy-to-clipboard ^5.0.1
--react-dom 16.6.0
--react-router-dom 4.3.1
--redis 2.8.0
--request 2.88.0
--uuid 3.3.2
-```
+
+* babel-core 6.26.3
+* babel-plugin-transform-class-properties 6.24.1
+* babel-plugin-transform-object-rest-spread 6.26.0
+* babel-preset-env 1.7.0
+* babel-preset-react 6.24.1
+* body-parser 1.18.3
+* elliptic 6.4.1
+* express 4.16.3
+* hex-to-binary 1.0.1
+* history 4.7.2
+* parcel-bundler 1.10.3
+* pubnub 4.21.6
+* react 16.9.0
+* react-bootstrap 0.32.4
+* react-copy-to-clipboard ^5.0.1
+* react-dom 16.6.0
+* react-router-dom 4.3.1
+* redis 2.8.0
+* request 2.88.0
+* uuid 3.3.2
+
 
 
 
