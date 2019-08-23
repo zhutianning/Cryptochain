@@ -42,7 +42,7 @@ node - v
 ```
 Update to the latest version using
 ```
-npm i -g npm.
+npm i -g npm
 ```
 If you do not have Node.js installed, Go to nodejs.org. You'll see download links for your laptop.
 
@@ -55,7 +55,7 @@ cd /ProjectFolder
 npm install
 ```
 ### Use the cryptocurrency application
-Start our root node and peer node
+Start the root node and peer node
 
 ```
 npm start dev
@@ -107,9 +107,9 @@ Check logs whether the deployment is successful
 heroku logs --tail
 ```
 
-## 3rd party libraries and its version I used
+## 3rd party libraries and its version this project used
 ```
--babel-core 6.26.3
+*babel-core 6.26.3
 -babel-plugin-transform-class-properties 6.24.1
 -babel-plugin-transform-object-rest-spread 6.26.0
 -babel-preset-env 1.7.0
