@@ -7,7 +7,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Acknowledgments
 The code in the Cryptocurrency package was based on David Katz's blockchain-based cryptocurrency lecture and part of his source code.(https://github.com/15Dkatz/cryptochain)
 
-### A typical top-level directory layout
+### Our folder structure
 
     .
     ├── app                     # Load Pub/Sub pattern and Mining
